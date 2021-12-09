@@ -201,6 +201,52 @@ int contour() {
     return 0;
 }
 
+void midPoint(double X1, double Y1, double X2, double Y2) {
+   
+    double dx = X2 - X1;
+    double dy = Y2 - Y1;
+   
+    if (dy <= dx) {
+        double d = dy - (dx/2);
+        double x = X1; 
+        double y = Y1;
+    
+        cout << "(x: " << x << ") (y:" << y << ")" << " - Start"<< endl;
+    
+        while (x < X2) {
+            x++;
+            if (d < 0) {
+                d = d + dy;
+                cout << "(x: " << x << ") (y:" << y << ")" << " - East" << endl;
+            } else {
+                d += (dy - dx);
+                y++;
+                cout << "(x: " << x << ") (y:" << y << ")" << " - Nord East" << endl;
+            }
+            
+        }
+    } else if (dx < dy) {
+        double d = dx - (dy/2);
+        double x = X1; 
+        double y = Y1;
+    
+        cout << "(x: " << x << ") (y:" << y << ")" << endl;
+    
+        while (y < Y2) {
+            y++;
+    
+            if (d < 0) {
+                d = d + dx;
+                cout << "(x: " << x << ") (y:" << y << ")" << " - East" << endl;
+            } else {
+                d += (dx - dy);
+                x++;
+                cout << "(x: " << x << ") (y:" << y << ")" << " - Nord East" << endl;
+            }
+            
+        }
+    }
+}
 
 
 
@@ -208,8 +254,10 @@ int contour() {
 int main (int argc, char *argv[]) {
 	//histogramStart();
 	//saltPepper_filter();
-	contour();
+	//contour();
+    //cout << "(x: " << x << "), (y:" << y << ")" << endl;
+	double x1 = 1, y1 = 1, x2 = 9, y2 = 4;
+    midPoint(x1, y1, x2, y2);
+    
+    return 0;
 }
-
-
-
